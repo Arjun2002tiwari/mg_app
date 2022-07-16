@@ -99,7 +99,7 @@ Dheeraj-singh@arch:~$ flutter pub get
 Dheeraj_singh@arch:~$ flutter run
 ```
 <!--------------------------------{ source code }------------------------------->
-[sc-zip]: https://github.com/Dheerajsingh002/mg_app/archive/refs/heads/master.zi
+[sc-zip]: https://github.com/Dheerajsingh002/mg_app/archive/refs/heads/master.zip
 
 
 
