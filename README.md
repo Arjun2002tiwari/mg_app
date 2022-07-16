@@ -51,7 +51,6 @@
 
 <div align=center>
 
-## 📱 App UI
 ## Directory Structure
 
 </div>
