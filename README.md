@@ -12,15 +12,99 @@
 
 ### A Simple Chattiing app made with Flutter using Google's Material Design and Firebase
 
-## ![][android] Download APK
+## Download APK
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+## 👨‍🎓 Things We learned through this project
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+</div>
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Navigation and Routing
+
+- Flutter Navigator is just a stack with special methods like (pushNamed, pushReplacement, etc).
+- Screens/Routes are just widgets.
+- Navigation from one route to another defines workflow of application.
+
+### State Management
+
+- Stateless/Statefull widgets.
+- Flutter reflects its UI by reflecting current state.
+- State is read while widget is built and can be changed using setState() for Stateful widgets.
+
+### Object Oriented Approach
+
+- Handling various functionalities by binding them in Class and creating Objects of them.
+- Reusability of Code, Reducing Redundancy.
+
+### Use of 3rd Party Packages
+
+- Use of external packages provide application with variety of usefull functionalities.
+- Make Application Standout.
+
+<div align=center>
+
+## 📱 App UI
+
+<details><summary> Click here to expand </summary>
+
+|      _Calculator Screen_      |          _Units Screen_          |     _Exchange Rate Screen_     |
+| :---------------------------: | :------------------------------: | :----------------------------: |
+|    ![][calculator screen]     |        ![][units screen]         |   ![][exchange rate screen]    |
+|    **_Rate Bottom Sheet_**    |  **_Length Conversion Screen_**  |  **_Area Conversion Screen_**  |
+|    ![][rate bottom sheet]     |  ![][length conversion screen]   |  ![][area conversion screen]   |
+| **_Speed Conversion Screen_** |  **_Weight Conversion Screen_**  |  **_Data Conversion Screen_**  |
+| ![][speed conversion screen]  |  ![][weight conversion screen]   |  ![][data conversion screen]   |
+| **_Power Conversion Screen_** | **_Pressure Conversion Screen_** | **_Volume Conversion Screen_** |
+| ![][power conversion screen]  | ![][pressure conversion screen]  | ![][volume conversion screen]  |
+|      **_About Screen_**       |         **Team Screen**          |     **_Settings Screen_**      |
+|       ![][about screen]       |         ![][team screen]         |      ![][settings screen]      |
+
+</details>
+
+## Directory Structure
+
+</div>
+
+```
+Chatting App
+|--android
+|--ios
+|-- lib
+|   |-- Auth.dart
+|   |--Chatroom.dart
+|   |--MessageScreen.dart
+|   |--Search.dart 
+|   |--Signin.dart 
+|   |--Sinup.dart  
+|   |--Constant.dart  
+|   |--main.dart   
+|--linux
+|--macos
+|--test
+|--web
+|--windows
+|--.gitignore
+|--.metadata
+|--analusis_options.yaml
+|--pubspec.lock
+`-- pubspec.yaml
+```
+
+<div align = center>
+## Building from Source
+
+</div>
+
+- If you don't have Flutter SDK installed, please visit official [Flutter](https://flutter.dev/) site.
+- Fetch latest source code from master branch.
+
+```console
+Dheeraj-singh@arch:~$ git clone https://github.com/rajput-hemant/calculator
+```
+
+- Run the app with Android Studio or VS Code. Or the command line:
+
+```console
+Dheeraj-singh@arch:~$ flutter pub get
+Dheeraj_singh@arch:~$ flutter run
+```
