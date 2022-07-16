@@ -5,7 +5,8 @@
 <p algin = "center"><a href="https://github.com/utkarsh-00007/readme-typing-svg"><img src="https://readme-typing-svg.herokuapp.com/?lines=It%20is%20a%20Chat%20App%20;It%20is%20made%20using%20Flutter%20and%20Dart%20;&font=Fira%20Code&left=true&width=440&height=45&color=DodgerBlue&vleft=true&size=22"></a>
 </p>
 
-![chatting](https://user-images.githubusercontent.com/94373786/179361510-1134b90e-6525-4db1-8867-29a6ed42e512.jpg)
+  <img width="500px" src="https://static.vecteezy.com/system/resources/previews/005/679/124/original/3d-colorful-bubble-chat-logo-template-chat-app-logo-or-icon-talk-bubble-speech-icon-vector.jpg">
+
 
 
 # Chatting App
@@ -81,6 +82,8 @@ Chatting App
 ```
 
 <div align = center>
+  
+  
 ## Building from Source
 
 </div>
