@@ -14,6 +14,13 @@
 
 ## Download APK
 
+---
+
+
+
+
+---
+
 
 ## 👨‍🎓 Things We learned through this project
 
@@ -44,23 +51,6 @@
 <div align=center>
 
 ## 📱 App UI
-
-<details><summary> Click here to expand </summary>
-
-|      _Calculator Screen_      |          _Units Screen_          |     _Exchange Rate Screen_     |
-| :---------------------------: | :------------------------------: | :----------------------------: |
-|    ![][calculator screen]     |        ![][units screen]         |   ![][exchange rate screen]    |
-|    **_Rate Bottom Sheet_**    |  **_Length Conversion Screen_**  |  **_Area Conversion Screen_**  |
-|    ![][rate bottom sheet]     |  ![][length conversion screen]   |  ![][area conversion screen]   |
-| **_Speed Conversion Screen_** |  **_Weight Conversion Screen_**  |  **_Data Conversion Screen_**  |
-| ![][speed conversion screen]  |  ![][weight conversion screen]   |  ![][data conversion screen]   |
-| **_Power Conversion Screen_** | **_Pressure Conversion Screen_** | **_Volume Conversion Screen_** |
-| ![][power conversion screen]  | ![][pressure conversion screen]  | ![][volume conversion screen]  |
-|      **_About Screen_**       |         **Team Screen**          |     **_Settings Screen_**      |
-|       ![][about screen]       |         ![][team screen]         |      ![][settings screen]      |
-
-</details>
-
 ## Directory Structure
 
 </div>
@@ -99,7 +89,7 @@ Chatting App
 - Fetch latest source code from master branch.
 
 ```console
-Dheeraj-singh@arch:~$ git clone https://github.com/rajput-hemant/calculator
+Dheeraj-singh@arch:~$ git clone https://github.com/Dheerajsingh002/mg_app.git
 ```
 
 - Run the app with Android Studio or VS Code. Or the command line:
@@ -108,3 +98,9 @@ Dheeraj-singh@arch:~$ git clone https://github.com/rajput-hemant/calculator
 Dheeraj-singh@arch:~$ flutter pub get
 Dheeraj_singh@arch:~$ flutter run
 ```
+<!--------------------------------{ source code }------------------------------->
+[sc-zip]: https://github.com/rajput-hemant/calculator/archive/refs/tags/v0.1.0.zip
+[sc-tar.gz]: https://github.com/rajput-hemant/calculator/archive/refs/tags/v0.1.0.tar.gz
+
+
+
