@@ -17,6 +17,12 @@ Future<void> main() async {
   
   if(email==null || name==null){
     runApp(MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        // scaffoldBackgroundColor: const Color.fromARGB(255, 113, 95, 95),
+        primarySwatch:Colors.red,
+        ),
       home: Signup(),
     ));
   }
@@ -24,6 +30,7 @@ Future<void> main() async {
     Constant.username=name;
     Constant.email=email;
     runApp(MaterialApp(  
+       
       home: Chatroom(text: name,email: email),
     ));
   }

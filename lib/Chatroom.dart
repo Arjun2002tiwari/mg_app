@@ -31,7 +31,8 @@ class _ChatroomState extends State<Chatroom> {
     getEmail();
     return Scaffold(
       appBar: AppBar(
-          title: Text('ChatRoom',
+        backgroundColor: Colors.redAccent,
+          title: Text('Bumbble',
               style: TextStyle(fontSize: 30)),
           actions: [
             IconButton(
