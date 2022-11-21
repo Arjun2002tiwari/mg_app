@@ -1,8 +1,9 @@
-// ignore_for_file: prefer_const_constructors, non_constant_identifier_names
+// ignore_for_file: prefer_const_constructors, non_constant_identifier_names, use_build_context_synchronously
 
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'Auth.dart';
@@ -171,8 +172,6 @@ class _SignupState extends State<Signup> {
                         });
                       }
                     } else {
-                      databaseMethods.uploadUserInfo(
-                          _username.text, _email.text);
                       setState(() {
                         _name = null;
                         _emailId = null;
@@ -221,7 +220,23 @@ class _SignupState extends State<Signup> {
     );
   }
 
-  void Loading() {
+  void Loading() async{
+    var isP=await databaseMethods.checkuser(_username.text);
+    if(isP){
+      Fluttertoast.showToast(
+        msg: "User exist Already!",
+        backgroundColor: Colors.black,
+        textColor: Colors.white,
+        fontSize: 20
+      );
+      print("user already found!");
+      setState(() {
+        isLoading=false;
+      });
+    }
+    else{
+      databaseMethods.uploadUserInfo(
+                          _username.text, _email.text);
     authMethods
         .signupWithEmailAndPassword(_email.text, _password.text)
         .then((val) async {
@@ -236,6 +251,8 @@ class _SignupState extends State<Signup> {
       Constant.username=prefs.getString('name')!;
       Constant.email=_email.text;
       Constant.username=_username.text;
+      !isLoading;
     });
+  }
   }
 }
