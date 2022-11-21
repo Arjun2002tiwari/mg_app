@@ -14,116 +14,120 @@ class Signin extends StatefulWidget {
 }
 
 class _SigninState extends State<Signin> {
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.all(10),
-          child:ListView(
-            children: [
-              SizedBox(
-                height: 30,
-              ),
-              Center(
-                child:Text('Connect with\nyour Friends!',style: TextStyle(fontSize: 40,color:Color.fromARGB(255, 133, 14, 184)),)
-              ),
-              SizedBox(
-                height: 30,
-              ),
-              TextField(
-                decoration: InputDecoration(
-                  hintText: 'username',
-                  hintStyle: TextStyle(color: Colors.blue,fontSize: 30,),
-                  border: UnderlineInputBorder(
-                    borderRadius: BorderRadius.circular(20),
-                    borderSide: BorderSide(color: Colors.blue,width: 5),
-                  ),
-                  enabledBorder: UnderlineInputBorder(
-                    borderRadius: BorderRadius.circular(20),
-                    borderSide: BorderSide(color: Colors.blue,width: 5),
-                  ),
-                  focusedBorder: UnderlineInputBorder(
-                    borderRadius: BorderRadius.circular(20),
-                    borderSide: BorderSide(color: Colors.blue,width: 5),
-                  ),
+      body: Container(
+         height:double.infinity,
+        width:double.infinity,
+        decoration:BoxDecoration(
+          image:DecorationImage(
+            image:AssetImage("assets/back5.jpg"),
+            fit:BoxFit.cover,
+          ),
+        ),
+        child: SafeArea(
+          child: Padding(
+            padding: EdgeInsets.all(10),
+            child:ListView(
+              children: [
+                SizedBox(
+                  height: 150,
                 ),
-                style: TextStyle(color: Colors.blue,fontSize: 20,),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              TextField(
-                decoration: InputDecoration(
-                  hintText: 'password',
-                  hintStyle: TextStyle(color: Colors.blue,fontSize: 30,),
-                  border: UnderlineInputBorder(
-                    borderRadius: BorderRadius.circular(20),
-                    borderSide: BorderSide(color: Colors.blue,width: 5),
-                  ),
-                  enabledBorder: UnderlineInputBorder(
-                    borderRadius: BorderRadius.circular(20),
-                    borderSide: BorderSide(color: Colors.blue,width: 5),
-                  ),
-                  focusedBorder: UnderlineInputBorder(
-                    borderRadius: BorderRadius.circular(20),
-                    borderSide: BorderSide(color: Colors.blue,width: 5),
-                  ),
+                Center(
+                  child:Image(image: AssetImage("assets/loginpage.png"),)
                 ),
-                style: TextStyle(color: Colors.blue,fontSize: 20,),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  TextButton(onPressed: (){}, 
-                  child: Text('Forgot Password?',style: TextStyle(fontSize: 20,color: Colors.red),),),
-                ],
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              ElevatedButton(onPressed: (){},
-              style:ElevatedButton.styleFrom(
-                padding:EdgeInsets.all(10),
-                shape:StadiumBorder(
-                  side: BorderSide(color: Colors.blue,width: 5),
+                SizedBox(
+                  height: 30,
                 ),
-              ),
-              child: Text('Sign In',style: TextStyle(fontSize: 30,color: Colors.white),),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Center(
-                child: Text('or',style: TextStyle(fontSize: 30,color: Colors.black,),
-                )
-              ),
-              SizedBox(
-                height: 5,
-              ),
-              Center(
-                child:Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                TextField(
+          autofocus: false,
+          controller: emailController,
+          keyboardType: TextInputType.emailAddress,
+          textInputAction: TextInputAction.next,
+          decoration: InputDecoration(
+            prefixIcon: const Icon(Icons.mail),
+            contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
+            hintText: "Email",
+            border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+          )),
+                SizedBox(
+                  height: 40,
+                ),
+                TextField(
+          autofocus: false,
+          controller: passwordController,
+          obscureText: true,
+         
+          keyboardType: TextInputType.visiblePassword,
+          
+          textInputAction: TextInputAction.next,
+          decoration: InputDecoration(
+              prefixIcon: const Icon(Icons.vpn_key),
+              contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
+              hintText: "password",
+              border:
+                  OutlineInputBorder(borderRadius: BorderRadius.circular(10)))),
+                SizedBox(
+                  height: 10,
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                  Text("New User?",style: TextStyle(fontSize: 20,color: Color.fromRGBO(0, 0, 0, 1),fontWeight:FontWeight.bold),),
-                  TextButton(
-                  onPressed: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>Signup()));
-                  }, 
-                  child: Text("Create acccount",style: TextStyle(fontSize: 20,color: Color.fromARGB(255, 73, 20, 247)),),),
-                ],)
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Center(
-                child: Text('Welcome \n    Back!',style: TextStyle(fontSize: 50,color: Color.fromARGB(255, 224, 149, 9),),
-                )
-              ),
-            ],
+                    TextButton(onPressed: (){}, 
+                    child: Text('Forgot Password?',style: TextStyle(fontSize: 20,color: Colors.black),),),
+                  ],
+                ),
+                SizedBox(
+                  height: 30,
+                ),
+               Material(
+        elevation: 5,
+        borderRadius: BorderRadius.circular(30),
+        color: Color.fromARGB(255, 16, 15, 15),
+        child: MaterialButton(
+          padding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
+          minWidth: MediaQuery.of(context).size.width,
+          onPressed: () {
+            // signIn(emailController.text, passwordController.text);
+          },
+          child: const Text(
+            "Login",
+            textAlign: TextAlign.center,
+            style: TextStyle(
+                fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),
+          ),
+        ),
+    ),
+                SizedBox(
+                  height: 10,
+                ),
+                
+                SizedBox(
+                  height: 5,
+                ),
+                Center(
+                  child:  Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const Text("Don't have an account?",style: TextStyle(fontSize: 20),),
+                            GestureDetector(
+                              onTap: (){
+                                Navigator.push(context, MaterialPageRoute(builder: (context)=>Signup()));
+                                },
+                              child: const Text("Sign Up",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20,color:Color.fromARGB(255, 255, 163, 72),),),
+                            )
+                          ],
+                        )
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                
+              ],
+            ),
           ),
         ),
       ),

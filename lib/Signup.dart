@@ -13,15 +13,18 @@ import 'constant.dart';
 
 class Signup extends StatefulWidget {
   const Signup({Key? key}) : super(key: key);
+  
 
   @override
   State<Signup> createState() => _SignupState();
 }
 
 class _SignupState extends State<Signup> {
-  TextEditingController _username = TextEditingController();
-  TextEditingController _password = TextEditingController();
-  TextEditingController _email = TextEditingController();
+  final TextEditingController nameEditingController =
+      TextEditingController();
+   final TextEditingController emailEditingController = TextEditingController();
+  final TextEditingController passwordEditingController =
+      TextEditingController();
   Auth authMethods = new Auth();
   DataBaseMethods databaseMethods = new DataBaseMethods();
   var _name = null;
@@ -39,140 +42,94 @@ class _SignupState extends State<Signup> {
             fontSize: 40,
           ),
         ),
-        backgroundColor: Color.fromARGB(255, 125, 7, 146),
+        backgroundColor: Colors.redAccent,
       ),
-      body: isLoading
-          ? Center(
-              child: CircularProgressIndicator(
-                  backgroundColor: Colors.amber, color: Colors.blue[900]))
-          : Padding(
+      body:Container(
+         height:double.infinity,
+        width:double.infinity,
+        decoration:BoxDecoration(
+          image:DecorationImage(
+            image:AssetImage("assets/back3.jpg"),
+            fit:BoxFit.cover,
+          ),
+        ),
+        child:Padding(
               padding: EdgeInsets.all(10),
               child: ListView(children: [
-                Image.network(
-                  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTK1kkljo0yMuOPzYDhUHBBvZCIoJKA3nf7RA&usqp=CAU',
-                  width: 100,
-                  height: 150,
-                ),
+                
                 Center(
-                  child: Text(
-                    'Stay Connected!',
-                    style: TextStyle(
-                        fontSize: 30, color: Color.fromARGB(255, 162, 46, 11)),
-                  ),
+                  child: Image(image: AssetImage("assets/stay.png"),width: 300,height: 300,)
                 ),
                 SizedBox(height: 10),
                 TextField(
-                  controller: _username,
-                  decoration: InputDecoration(
-                    errorText: _name == null ? null : _name,
-                    hintText: 'name',
-                    hintStyle: TextStyle(
-                      color: Colors.black,
-                      fontSize: 30,
-                    ),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
-                      borderSide: BorderSide(color: Colors.black, width: 2),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
-                      borderSide: BorderSide(color: Colors.black, width: 2),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
-                      borderSide: BorderSide(color: Colors.black, width: 2),
-                    ),
-                  ),
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 20,
-                  ),
-                ),
+      autofocus: false,
+      controller: nameEditingController,
+      keyboardType: TextInputType.name,
+      textInputAction: TextInputAction.next,
+      decoration: InputDecoration(
+        prefixIcon: const Icon(Icons.account_circle),
+        contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
+        hintText: "First Name",
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+      )),
                 SizedBox(
                   height: 20,
                 ),
-                TextField(
-                  controller: _email,
-                  decoration: InputDecoration(
-                    errorText: _emailId == null ? null : _emailId,
-                    hintText: 'email',
-                    hintStyle: TextStyle(
-                      color: Colors.black,
-                      fontSize: 30,
-                    ),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
-                      borderSide: BorderSide(color: Colors.black, width: 2),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
-                      borderSide: BorderSide(color: Colors.black, width: 2),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
-                      borderSide: BorderSide(color: Colors.black, width: 2),
-                    ),
-                  ),
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 20,
-                  ),
-                ),
+                 TextField(
+        autofocus: false,
+        controller: emailEditingController,
+        keyboardType: TextInputType.emailAddress,
+        textInputAction: TextInputAction.next,
+        decoration: InputDecoration(
+          prefixIcon: const Icon(Icons.mail),
+          contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
+          hintText: "Email",
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(10),),
+        )),
                 SizedBox(
                   height: 20,
                 ),
-                TextField(
-                  controller: _password,
-                  obscureText: true,
-                  decoration: InputDecoration(
-                    errorText: _pass == null ? null : _pass,
-                    hintText: 'Password',
-                    hintStyle: TextStyle(
-                      color: Colors.black,
-                      fontSize: 30,
-                    ),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
-                      borderSide: BorderSide(color: Colors.black, width: 2),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
-                      borderSide: BorderSide(color: Colors.black, width: 2),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
-                      borderSide: BorderSide(color: Colors.black, width: 2),
-                    ),
-                  ),
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 30,
-                  ),
-                ),
+               TextField(
+      autofocus: false,
+      controller: passwordEditingController,
+      obscureText: true,
+      keyboardType: TextInputType.visiblePassword,
+      textInputAction: TextInputAction.next,
+      decoration: InputDecoration(
+          prefixIcon: const Icon(Icons.vpn_key),
+          contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
+          hintText: "password",
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)))),
                 SizedBox(
                   height: 20,
                 ),
-                ElevatedButton(
-                  onPressed: () {
-                    if (_username.text == '' ||
-                        _email.text == '' ||
-                        _password.text == '') {
-                      if (_username.text == '') {
+               Material(
+      elevation: 5,
+      borderRadius: BorderRadius.circular(30),
+      color: const Color.fromARGB(255, 5, 5, 5),
+      child: MaterialButton(
+        padding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
+        minWidth: MediaQuery.of(context).size.width,
+        onPressed: ()  {
+                    if (nameEditingController.text == '' ||
+                        emailEditingController.text == '' ||
+                        passwordEditingController.text == '') {
+                      if (nameEditingController.text == '') {
                         setState(() {
                           _name = 'name is required';
                         });
-                      } else if (_email.text == '') {
+                      } else if (emailEditingController.text == '') {
                         setState(() {
                           _emailId = 'email is required';
                         });
-                      } else if (_password.text == '') {
+                      } else if (passwordEditingController.text == '') {
                         setState(() {
                           _pass = 'password is required';
                         });
                       }
                     } else {
                       databaseMethods.uploadUserInfo(
-                          _username.text, _email.text);
+                          nameEditingController.text, emailEditingController.text);
                       setState(() {
                         _name = null;
                         _emailId = null;
@@ -182,60 +139,56 @@ class _SignupState extends State<Signup> {
                       Loading();
                     }
                   },
-                  style: ElevatedButton.styleFrom(
-                    primary: Colors.blue[900],
-                    padding: EdgeInsets.all(20),
-                    minimumSize: const Size.fromHeight(50),
-                    shape: StadiumBorder(
-                      side: BorderSide(color: Colors.white, width: 2),
-                    ),
-                  ),
-                  child: Text(
-                    'Sign Up',
-                    style: TextStyle(color: Colors.white, fontSize: 30),
-                  ),
-                ),
+        child: const Text(
+          "Sign Up",
+          textAlign: TextAlign.center,
+          style: TextStyle(
+              fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),
+        ),
+      ),
+    ),
                 SizedBox(
                   height: 20,
                 ),
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(context,
+                Material(
+      elevation: 5,
+      borderRadius: BorderRadius.circular(30),
+      color: const Color.fromARGB(255, 5, 5, 5),
+      child: MaterialButton(
+        padding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
+        minWidth: MediaQuery.of(context).size.width,
+        onPressed: () {
+          Navigator.push(context,
                         MaterialPageRoute(builder: (context) => Signin()));
-                  },
-                  style: ElevatedButton.styleFrom(
-                    primary: Colors.white,
-                    padding: EdgeInsets.all(20),
-                    minimumSize: const Size.fromHeight(50),
-                    shape: StadiumBorder(
-                      side: BorderSide(color: Colors.grey, width: 2),
-                    ),
-                  ),
-                  child: Text(
-                    'Sign In',
-                    style: TextStyle(color: Colors.black, fontSize: 30),
-                  ),
-                ),
+        },
+        child: const Text(
+          "Sign In",
+          textAlign: TextAlign.center,
+          style: TextStyle(
+              fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),
+        ),
+      ),
+    ),
               ]),
             ),
-    );
+    ));
   }
 
   void Loading() {
     authMethods
-        .signupWithEmailAndPassword(_email.text, _password.text)
+        .signupWithEmailAndPassword(emailEditingController.text, passwordEditingController.text)
         .then((val) async {
       Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-              builder: (context) => Chatroom(text: _username.text,email:_email.text)));
+              builder: (context) => Chatroom(text: nameEditingController.text,email:emailEditingController.text)));
       SharedPreferences prefs=await SharedPreferences.getInstance();
-      prefs.setString('name', _username.text);
-      prefs.setString('email', _email.text);
+      prefs.setString('name', nameEditingController.text);
+      prefs.setString('email', emailEditingController.text);
       Constant.email=prefs.getString('email')!;
       Constant.username=prefs.getString('name')!;
-      Constant.email=_email.text;
-      Constant.username=_username.text;
+      Constant.email=emailEditingController.text;
+      Constant.username=nameEditingController.text;
     });
   }
 }
