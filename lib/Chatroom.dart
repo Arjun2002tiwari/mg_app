@@ -110,7 +110,7 @@ class ShowFriends extends StatelessWidget {
             leading: Icon(Icons.person_add_alt_1_rounded,size:40,color:Colors.blue[700]),
             trailing: Icon(Icons.message,color:Colors.grey[700],size:40),
             onTap: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context) => MessageScreen(username: x['username'],)
+              Navigator.push(context, MaterialPageRoute(builder: (context) => MessageScreen(username: x['username'],email:x['email'])
               ));
             },
 

@@ -97,7 +97,7 @@ class _SearchState extends State<Search> {
                 'email':usersMap!['email'],
                 'username':usersMap!['username'],
               });
-              Navigator.push(context, MaterialPageRoute(builder: (context) => MessageScreen(username: usersMap!['username'],)
+              Navigator.push(context, MaterialPageRoute(builder: (context) => MessageScreen(email: usersMap!['email'],username:usersMap!['username'])
               ));
             },
             ):Container(),  
