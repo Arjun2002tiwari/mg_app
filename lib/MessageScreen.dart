@@ -9,13 +9,13 @@ import 'Database.dart';
 
 
 class MessageScreen extends StatelessWidget {
-  String username;
-  MessageScreen({Key? key,required this.username}) : super(key: key);
+  String email,username;
+  MessageScreen({Key? key,required this.email,required this.username}) : super(key: key);
   TextEditingController _msg=new TextEditingController();
   DataBaseMethods databaseMethods=new DataBaseMethods();
 
-  int chatId(String user1,String user2){
-    return user1.codeUnits[0]+user2.codeUnits[0];
+  String chatId(String user1,String user2){
+    return user1+user2;
   }
   
   @override
@@ -32,7 +32,7 @@ class MessageScreen extends StatelessWidget {
               height: size.height/1.27,
               width: size.width,
               padding:EdgeInsets.only(top:15),
-              child:ShowMessage(username,Constant.username),
+              child:ShowMessage(email,Constant.email),
             ),
        Container(
         height: size.height/10,
@@ -64,10 +64,10 @@ class MessageScreen extends StatelessWidget {
                 onPressed: (){
                   if(_msg.text.isNotEmpty){
                     print(Constant.username);
-                    int Id=chatId(Constant.username,username);
-                    var id=Id.toString();
-                    print(Id);
+                    String id=chatId(Constant.email,email);
+                    //var id=Id.toString();
                     print(id);
+                    //print(id);
                   databaseMethods.uploadMsg(_msg.text.trim(),Constant.email,id);
                   _msg.clear();
                   }
@@ -89,7 +89,7 @@ class ShowMessage extends StatelessWidget {
   ShowMessage(this.username, this.username2, {Key? key}) : super(key: key);
 
   String chatId(String user1,String user2){
-    return (user1.codeUnits[0]+user2.codeUnits[0]).toString();
+    return user1+user2;
   }
 
   @override

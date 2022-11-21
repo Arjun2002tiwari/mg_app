@@ -1,8 +1,9 @@
-// ignore_for_file: prefer_const_constructors, non_constant_identifier_names
+// ignore_for_file: prefer_const_constructors, non_constant_identifier_names, use_build_context_synchronously
 
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'Auth.dart';
@@ -128,8 +129,11 @@ class _SignupState extends State<Signup> {
                         });
                       }
                     } else {
+<<<<<<< HEAD
                       databaseMethods.uploadUserInfo(
                           nameEditingController.text, emailEditingController.text);
+=======
+>>>>>>> 967c52ac8c447f93894632cf02015f7f463f77b1
                       setState(() {
                         _name = null;
                         _emailId = null;
@@ -174,7 +178,23 @@ class _SignupState extends State<Signup> {
     ));
   }
 
-  void Loading() {
+  void Loading() async{
+    var isP=await databaseMethods.checkuser(_username.text);
+    if(isP){
+      Fluttertoast.showToast(
+        msg: "User exist Already!",
+        backgroundColor: Colors.black,
+        textColor: Colors.white,
+        fontSize: 20
+      );
+      print("user already found!");
+      setState(() {
+        isLoading=false;
+      });
+    }
+    else{
+      databaseMethods.uploadUserInfo(
+                          _username.text, _email.text);
     authMethods
         .signupWithEmailAndPassword(emailEditingController.text, passwordEditingController.text)
         .then((val) async {
@@ -187,8 +207,15 @@ class _SignupState extends State<Signup> {
       prefs.setString('email', emailEditingController.text);
       Constant.email=prefs.getString('email')!;
       Constant.username=prefs.getString('name')!;
+<<<<<<< HEAD
       Constant.email=emailEditingController.text;
       Constant.username=nameEditingController.text;
+=======
+      Constant.email=_email.text;
+      Constant.username=_username.text;
+      !isLoading;
+>>>>>>> 967c52ac8c447f93894632cf02015f7f463f77b1
     });
+  }
   }
 }

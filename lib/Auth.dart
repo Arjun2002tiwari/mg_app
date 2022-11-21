@@ -16,6 +16,19 @@ class Auth{
       print(e.toString());
     }
   }
+Future signInWithEmailAndPassword(String email,String password)async{
+  try{
+    UserCredential result=await _auth.signInWithEmailAndPassword(email: email, password: password);
+    User? user=result.user;
+    print(user?.uid);
+    return user;
+    }
+    catch(e){
+      print(e.toString());
+    }
+}
+
+
   Future signOut() async {
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
