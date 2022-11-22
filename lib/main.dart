@@ -23,6 +23,7 @@ Future<void> main() async {
       title: 'Flutter Demo',
       theme: ThemeData(
         // fontFamily: "sono",
+        fontFamily: "RubikMoonrocks",
       
         // scaffoldBackgroundColor: const Color.fromARGB(255, 113, 95, 95),
         primarySwatch: Colors.red,
