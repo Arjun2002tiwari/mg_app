@@ -179,7 +179,7 @@ class _SignupState extends State<Signup> {
     if(isP){
       Fluttertoast.showToast(
         msg: "User exist Already!",
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.red,
         textColor: Colors.white,
         fontSize: 20
       );
