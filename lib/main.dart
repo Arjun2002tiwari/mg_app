@@ -2,6 +2,7 @@
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:mg_app/Signin.dart';
 import 'package:mg_app/Signup.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -23,13 +24,14 @@ Future<void> main() async {
         // scaffoldBackgroundColor: const Color.fromARGB(255, 113, 95, 95),
         primarySwatch:Colors.red,
         ),
-      home: Signup(),
+      home: Signin(),
     ));
   }
   else{
     Constant.username=name;
     Constant.email=email;
     runApp(MaterialApp(  
+      debugShowCheckedModeBanner: false,
        
       home: Chatroom(text: name,email: email),
     ));
