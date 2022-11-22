@@ -89,7 +89,7 @@ class _SearchState extends State<Search> {
               ],
             ),
           ),
-<<<<<<< HEAD
+      
           usersMap!=null?Container(
             
         decoration:BoxDecoration(
@@ -115,27 +115,11 @@ class _SearchState extends State<Search> {
                   'email':usersMap!['email'],
                   'username':usersMap!['username'],
                 });
-                Navigator.push(context, MaterialPageRoute(builder: (context) => MessageScreen(username: usersMap!['username'],)
+                Navigator.push(context, MaterialPageRoute(builder: (context) => MessageScreen(username: usersMap!['username'],email:usersMap!['email'])
                 ));
               },
               ),
           ):Container(),  
-=======
-          usersMap!=null?ListTile(
-            title:Text(usersMap!['username'],style: TextStyle(fontSize: 25,color: Colors.black),),
-            subtitle: Text(usersMap!['email'],style: TextStyle(fontSize: 15,color: Colors.black),),
-            leading:Icon(Icons.person_add_alt_rounded,size: 40,color: Colors.black,),
-            trailing: Icon(Icons.message_rounded,size: 50,color: Colors.amber[700],),
-            onTap: () {
-              FirebaseFirestore.instance.collection('friends').doc(Constant.username).collection('chats').add({
-                'email':usersMap!['email'],
-                'username':usersMap!['username'],
-              });
-              Navigator.push(context, MaterialPageRoute(builder: (context) => MessageScreen(email: usersMap!['email'],username:usersMap!['username'])
-              ));
-            },
-            ):Container(),  
->>>>>>> 7bfac90f3fe7ff0a943f7713dc4c469e5f37f90a
         ],
       ),
     );

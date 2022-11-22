@@ -161,7 +161,6 @@ class ShowFriends extends StatelessWidget {
           itemCount:snapshot.data!.docs.length,
           itemBuilder:(context,index){
           QueryDocumentSnapshot x=snapshot.data!.docs[index];
-<<<<<<< HEAD
           return Container(
              decoration:BoxDecoration(
           image:DecorationImage(
@@ -186,24 +185,10 @@ class ShowFriends extends StatelessWidget {
               ]),),
               trailing: Icon(Icons.message,color:Color.fromARGB(255, 248, 241, 241),size:40),
               onTap: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context) => MessageScreen(username: x['username'],)
+                Navigator.push(context, MaterialPageRoute(builder: (context) => MessageScreen(username: x['username'], email:x['email'],)
                 ));
               },
-=======
-          return ListTile(
-            // shape:RoundedRectangleBorder(
-            //   side:BorderSide(color: Colors.grey.shade500,width:2),
-            // ),
-            tileColor: Colors.grey[400],
-            title:Text(x['username'],style: TextStyle(fontSize: 25,color: Colors.black),),
-            subtitle: Text(x['email'],style:TextStyle(fontSize:15,color:Colors.black)),
-            leading: Icon(Icons.person_add_alt_1_rounded,size:40,color:Colors.blue[700]),
-            trailing: Icon(Icons.message,color:Colors.grey[700],size:40),
-            onTap: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context) => MessageScreen(username: x['username'],email:x['email'])
-              ));
-            },
->>>>>>> 7bfac90f3fe7ff0a943f7713dc4c469e5f37f90a
+
 
             ),
           );
