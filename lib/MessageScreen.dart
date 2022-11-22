@@ -1,12 +1,12 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, sized_box_for_whitespace
 
 
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:mg_app/constant.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import 'Database.dart';
 
 class MessageScreen extends StatelessWidget {
@@ -128,6 +128,7 @@ class MessageScreen extends StatelessWidget {
                                       mainAxisSize: MainAxisSize.min,
                                       children: [
                                         IconButton(onPressed: () {
+                                          // shareFile();
                                           showModalBottomSheet(
                                               backgroundColor: Colors.transparent,
                                               context: context, builder:(builder)=>bottomsheet());
@@ -136,6 +137,7 @@ class MessageScreen extends StatelessWidget {
 
                                             icon: Icon(Icons.attach_file,color: Colors.white,)),
                                         IconButton(onPressed: () {
+                                          // shareText();
 
                                         },
                                             icon: Icon(Icons.camera_alt,color: Colors.white,))
