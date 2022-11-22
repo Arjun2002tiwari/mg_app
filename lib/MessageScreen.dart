@@ -23,7 +23,7 @@ class MessageScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    final number='9837368791';
+    final number=Constant.myMap[username];
     return Scaffold(
       appBar: AppBar(
         leadingWidth: 70,
@@ -54,7 +54,7 @@ class MessageScreen extends StatelessWidget {
           IconButton(onPressed: () {}, icon: Icon(Icons.videocam)),
           IconButton(onPressed: () async{
             // launch('tel://$number');
-            await FlutterPhoneDirectCaller.callNumber(number);
+            await FlutterPhoneDirectCaller.callNumber(number!);
             
 
           }, icon: Icon(Icons.call)),

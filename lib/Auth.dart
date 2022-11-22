@@ -33,7 +33,7 @@ Future signInWithEmailAndPassword(String email,String password)async{
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       prefs.remove('email');
-      prefs.remove('name');
+      //prefs.remove('name');
       return await _auth.signOut();
     } catch (e) {
       print(e.toString());
