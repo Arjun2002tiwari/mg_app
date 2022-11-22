@@ -7,6 +7,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'Database.dart';
 
 class MessageScreen extends StatelessWidget {
+<<<<<<< HEAD
   String username;
   MessageScreen({Key? key, required this.username}) : super(key: key);
   TextEditingController _msg = new TextEditingController();
@@ -14,12 +15,22 @@ class MessageScreen extends StatelessWidget {
 
   int chatId(String user1, String user2) {
     return user1.codeUnits[0] + user2.codeUnits[0];
+=======
+  String email,username;
+  MessageScreen({Key? key,required this.email,required this.username}) : super(key: key);
+  TextEditingController _msg=new TextEditingController();
+  DataBaseMethods databaseMethods=new DataBaseMethods();
+
+  String chatId(String user1,String user2){
+    return user1+user2;
+>>>>>>> 7bfac90f3fe7ff0a943f7713dc4c469e5f37f90a
   }
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
+<<<<<<< HEAD
       appBar: AppBar(
         backgroundColor: Colors.black,
         leadingWidth: 70,
@@ -28,6 +39,27 @@ class MessageScreen extends StatelessWidget {
           onTap: () {
             Navigator.pop(context);
           },
+=======
+      appBar:AppBar(
+        title:Text(username,style:TextStyle(fontSize:30)),
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(
+              height: size.height/1.27,
+              width: size.width,
+              padding:EdgeInsets.only(top:15),
+              child:ShowMessage(email,Constant.email),
+            ),
+       Container(
+        height: size.height/10,
+        width: size.width,
+        alignment: Alignment.center,
+        child:Container(
+          height:size.height/12,
+          width:size.width/1.1,
+>>>>>>> 7bfac90f3fe7ff0a943f7713dc4c469e5f37f90a
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -35,6 +67,7 @@ class MessageScreen extends StatelessWidget {
                 Icons.arrow_back,
                 size: 24,
               ),
+<<<<<<< HEAD
               CircleAvatar(
                 child: Icon(
                   Icons.person,
@@ -44,6 +77,23 @@ class MessageScreen extends StatelessWidget {
                 backgroundColor: Color.fromARGB(255, 102, 75, 75),
               )
             ],
+=======
+              IconButton(
+                onPressed: (){
+                  if(_msg.text.isNotEmpty){
+                    print(Constant.username);
+                    String id=chatId(Constant.email,email);
+                    //var id=Id.toString();
+                    print(id);
+                    //print(id);
+                  databaseMethods.uploadMsg(_msg.text.trim(),Constant.email,id);
+                  _msg.clear();
+                  }
+                }, 
+                icon: Icon(Icons.send,color:Colors.grey,size:30)
+            ),
+          ],
+>>>>>>> 7bfac90f3fe7ff0a943f7713dc4c469e5f37f90a
           ),
         ),
         title: Text(username, style: TextStyle(fontSize: 30)),
@@ -260,8 +310,13 @@ class ShowMessage extends StatelessWidget {
   String username2 = "";
   ShowMessage(this.username, this.username2, {Key? key}) : super(key: key);
 
+<<<<<<< HEAD
   String chatId(String user1, String user2) {
     return (user1.codeUnits[0] + user2.codeUnits[0]).toString();
+=======
+  String chatId(String user1,String user2){
+    return user1+user2;
+>>>>>>> 7bfac90f3fe7ff0a943f7713dc4c469e5f37f90a
   }
 
   @override
