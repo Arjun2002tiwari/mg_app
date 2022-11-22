@@ -1,8 +1,9 @@
-// ignore_for_file: prefer_const_constructors, non_constant_identifier_names
+// ignore_for_file: prefer_const_constructors, non_constant_identifier_names, use_build_context_synchronously
 
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'Auth.dart';
@@ -20,10 +21,10 @@ class Signup extends StatefulWidget {
 }
 
 class _SignupState extends State<Signup> {
-  final TextEditingController nameEditingController =
+  final TextEditingController _username =
       TextEditingController();
-   final TextEditingController emailEditingController = TextEditingController();
-  final TextEditingController passwordEditingController =
+   final TextEditingController _email = TextEditingController();
+  final TextEditingController _password =
       TextEditingController();
   Auth authMethods = new Auth();
   DataBaseMethods databaseMethods = new DataBaseMethods();
@@ -63,7 +64,7 @@ class _SignupState extends State<Signup> {
                 SizedBox(height: 10),
                 TextField(
       autofocus: false,
-      controller: nameEditingController,
+      controller: _username,
       keyboardType: TextInputType.name,
       textInputAction: TextInputAction.next,
       decoration: InputDecoration(
@@ -77,7 +78,7 @@ class _SignupState extends State<Signup> {
                 ),
                  TextField(
         autofocus: false,
-        controller: emailEditingController,
+        controller: _email,
         keyboardType: TextInputType.emailAddress,
         textInputAction: TextInputAction.next,
         decoration: InputDecoration(
@@ -91,7 +92,7 @@ class _SignupState extends State<Signup> {
                 ),
                TextField(
       autofocus: false,
-      controller: passwordEditingController,
+      controller: _password,
       obscureText: true,
       keyboardType: TextInputType.visiblePassword,
       textInputAction: TextInputAction.next,
@@ -111,25 +112,23 @@ class _SignupState extends State<Signup> {
         padding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
         minWidth: MediaQuery.of(context).size.width,
         onPressed: ()  {
-                    if (nameEditingController.text == '' ||
-                        emailEditingController.text == '' ||
-                        passwordEditingController.text == '') {
-                      if (nameEditingController.text == '') {
+                    if (_username.text == '' ||
+                        _email.text == '' ||
+                        _password.text == '') {
+                      if (_username.text == '') {
                         setState(() {
                           _name = 'name is required';
                         });
-                      } else if (emailEditingController.text == '') {
+                      } else if (_email.text == '') {
                         setState(() {
                           _emailId = 'email is required';
                         });
-                      } else if (passwordEditingController.text == '') {
+                      } else if (_password.text == '') {
                         setState(() {
                           _pass = 'password is required';
                         });
                       }
                     } else {
-                      databaseMethods.uploadUserInfo(
-                          nameEditingController.text, emailEditingController.text);
                       setState(() {
                         _name = null;
                         _emailId = null;
@@ -174,21 +173,41 @@ class _SignupState extends State<Signup> {
     ));
   }
 
-  void Loading() {
+  void Loading() async{
+    var isP=await databaseMethods.checkuser(_username.text);
+    if(isP){
+      Fluttertoast.showToast(
+        msg: "User exist Already!",
+        backgroundColor: Colors.black,
+        textColor: Colors.white,
+        fontSize: 20
+      );
+      print("user already found!");
+      setState(() {
+        isLoading=false;
+      });
+    }
+    else{
+      databaseMethods.uploadUserInfo(
+                          _username.text, _email.text);
     authMethods
-        .signupWithEmailAndPassword(emailEditingController.text, passwordEditingController.text)
+        .signupWithEmailAndPassword(_email.text, _password.text)
         .then((val) async {
       Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-              builder: (context) => Chatroom(text: nameEditingController.text,email:emailEditingController.text)));
+              builder: (context) => Chatroom(text: _username.text,email:_email.text)));
       SharedPreferences prefs=await SharedPreferences.getInstance();
-      prefs.setString('name', nameEditingController.text);
-      prefs.setString('email', emailEditingController.text);
+      prefs.setString('name', _username.text);
+      prefs.setString('email', _email.text);
       Constant.email=prefs.getString('email')!;
       Constant.username=prefs.getString('name')!;
-      Constant.email=emailEditingController.text;
-      Constant.username=nameEditingController.text;
+      Constant.email=_email.text;
+      Constant.username=_username.text;
+      Constant.email=_email.text;
+      Constant.username=_username.text;
+      !isLoading;
     });
+  }
   }
 }
