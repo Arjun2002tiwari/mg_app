@@ -16,8 +16,12 @@ class MessageScreen extends StatelessWidget {
   TextEditingController _msg = new TextEditingController();
   DataBaseMethods databaseMethods = new DataBaseMethods();
 
-  String chatId(String user1, String user2) {
-    return user1 + user2;
+  int chatId() {
+    String user1=Constant.myMap[Constant.username]!;
+    String user2=Constant.myMap[username]!;
+    int u1=int.parse(user1.substring(3,7));
+    int u2=int.parse(user2.substring(3,7));
+    return u1 + u2;
   }
 
   @override
@@ -101,7 +105,7 @@ class MessageScreen extends StatelessWidget {
               height: size.height / 1.27,
               width: size.width,
               padding: EdgeInsets.only(top: 15),
-              child: ShowMessage(email, Constant.email),
+              child: ShowMessage(username, Constant.username),
             ),
             Container(
               height: size.height / 10,
@@ -169,12 +173,12 @@ class MessageScreen extends StatelessWidget {
                         onPressed: () {
                           if (_msg.text.isNotEmpty) {
                             print(Constant.username);
-                            String id = chatId(Constant.email, email);
-                            //var id=Id.toString();
+                            int id = chatId();
+                            var Id=id.toString();
                             print(id);
                             //print(id);
                             databaseMethods.uploadMsg(
-                                _msg.text.trim(), Constant.email, id);
+                                _msg.text.trim(), Constant.email, Id);
                             _msg.clear();
                           }
                         },
@@ -263,13 +267,18 @@ class ShowMessage extends StatelessWidget {
   String username2 = "";
   ShowMessage(this.username, this.username2, {Key? key}) : super(key: key);
 
-  String chatId(String user1, String user2) {
-    return user1 + user2;
+  int chatId() {
+    String user1=Constant.myMap[username]!;
+    String user2=Constant.myMap[username2]!;
+    int u1=int.parse(user1.substring(3,7));
+    int u2=int.parse(user2.substring(3,7));
+    return u1 + u2;
   }
 
   @override
   Widget build(BuildContext context) {
-    String Id = chatId(username2, username);
+    int id = chatId();
+    var Id=id.toString();
     return StreamBuilder<QuerySnapshot>(
       stream: FirebaseFirestore.instance
           .collection('messages')
