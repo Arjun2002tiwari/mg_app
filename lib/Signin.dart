@@ -3,8 +3,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
+import 'Auth.dart';
+import 'Chatroom.dart';
 import 'Signup.dart';
+import 'constant.dart';
 
 class Signin extends StatefulWidget {
   const Signin({Key? key}) : super(key: key);
@@ -14,8 +19,9 @@ class Signin extends StatefulWidget {
 }
 
 class _SigninState extends State<Signin> {
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController _email = TextEditingController();
+  final TextEditingController _pass = TextEditingController();
+  Auth authMethods = new Auth();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,7 +50,7 @@ class _SigninState extends State<Signin> {
                 ),
                 TextField(
           autofocus: false,
-          controller: emailController,
+          controller: _email,
           keyboardType: TextInputType.emailAddress,
           textInputAction: TextInputAction.next,
           decoration: InputDecoration(
@@ -58,7 +64,7 @@ class _SigninState extends State<Signin> {
                 ),
                 TextField(
           autofocus: false,
-          controller: passwordController,
+          controller: _pass,
           obscureText: true,
          
           keyboardType: TextInputType.visiblePassword,
@@ -91,8 +97,25 @@ class _SigninState extends State<Signin> {
           padding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
           minWidth: MediaQuery.of(context).size.width,
           onPressed: () {
-            // signIn(emailController.text, passwordController.text);
-          },
+            authMethods.signInWithEmailAndPassword(_email.text, _pass.text)
+             .then((val) async {
+      Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+              builder: (context) => Chatroom(text:Constant.username,email: _email.text)));
+      SharedPreferences prefs=await SharedPreferences.getInstance();
+      prefs.setString('name', Constant.username);
+      prefs.setString('email', _email.text);
+      Constant.email=prefs.getString('email')!;
+      Constant.username=prefs.getString('name')!;
+       Fluttertoast.showToast(
+        msg: "Signed In successfully!",
+        backgroundColor: Colors.green,
+        textColor: Colors.white,
+        fontSize: 10
+      );
+    });
+    },
           child: const Text(
             "Login",
             textAlign: TextAlign.center,

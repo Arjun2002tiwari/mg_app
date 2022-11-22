@@ -3,6 +3,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:mg_app/Auth.dart';
+import 'package:mg_app/Signin.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'MessageScreen.dart';
@@ -155,7 +156,7 @@ class _ChatroomState extends State<Chatroom> {
                 onTap: () {
                   _auth.signOut();
                   Navigator.pushReplacement(context,
-                      MaterialPageRoute(builder: (context) => Signup()));
+                      MaterialPageRoute(builder: (context) => Signin()));
                 },
               ),
             ],

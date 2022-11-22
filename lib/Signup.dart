@@ -207,6 +207,12 @@ class _SignupState extends State<Signup> {
       Constant.username=_username.text;
       Constant.email=_email.text;
       Constant.username=_username.text;
+      Fluttertoast.showToast(
+        msg: "Signed Up successfully!",
+        backgroundColor: Colors.green,
+        textColor: Colors.white,
+        fontSize: 10
+      );
       !isLoading;
     });
   }
