@@ -36,14 +36,15 @@ class _SignupState extends State<Signup> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: Text(
           'Bumbble',
           style: TextStyle(
-            color: Colors.white,
-            fontSize: 40,
+            color: Color.fromARGB(255, 181, 102, 102),
+            fontSize: 30,
           ),
         ),
-        backgroundColor: Colors.redAccent,
+        backgroundColor: Color.fromARGB(255, 242, 153, 43),
       ),
       body:Container(
          height:double.infinity,
