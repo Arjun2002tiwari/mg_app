@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -96,25 +97,70 @@ class _SigninState extends State<Signin> {
         child: MaterialButton(
           padding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
           minWidth: MediaQuery.of(context).size.width,
-          onPressed: () {
-            authMethods.signInWithEmailAndPassword(_email.text, _pass.text)
-             .then((val) async {
-      Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-              builder: (context) => Chatroom(text:Constant.username,email: _email.text)));
-      SharedPreferences prefs=await SharedPreferences.getInstance();
-      prefs.setString('name', Constant.username);
-      prefs.setString('email', _email.text);
-      Constant.email=prefs.getString('email')!;
-      Constant.username=prefs.getString('name')!;
-       Fluttertoast.showToast(
-        msg: "Signed In successfully!",
-        backgroundColor: Colors.green,
-        textColor: Colors.white,
-        fontSize: 10
-      );
-    });
+          onPressed: () async {
+
+            User? user = await Auth.signInUsingEmailPassword(
+              email: _email.text,
+              password: _pass.text,
+            );
+            if (user != null) {
+               Navigator.pushReplacement(
+             context,
+           MaterialPageRoute(
+               builder: (context) => Chatroom(text:Constant.username,email: _email.text)));
+               SharedPreferences prefs=await SharedPreferences.getInstance();
+              prefs.setString('name', Constant.username);
+             prefs.setString('email', _email.text);
+             Constant.email=prefs.getString('email')!;
+             Constant.username=prefs.getString('name')!;
+             Fluttertoast.showToast(
+              msg: "Signed In successfully!",
+              backgroundColor: Colors.green,
+              textColor: Colors.white,
+              fontSize: 10
+            ); 
+            }
+            
+      //       FirebaseAuth auth = FirebaseAuth.instance;
+      //       User? user;
+
+      //       try {
+      //         UserCredential userCredential = await auth.signInWithEmailAndPassword(
+      //           email: _email.text,
+      //           password: _pass.text,
+      //         );
+      //         user = userCredential.user;
+      //       } on FirebaseAuthException catch (e) {
+      //         if (e.code == 'user-not-found') {
+      //           print('No user found for that email.');
+      //            Fluttertoast.showToast(
+      //               msg: "User not found!!",
+      //               backgroundColor: Colors.red,
+      //               textColor: Colors.white,
+      //               fontSize: 15
+      //             );
+      //         } else if (e.code == 'wrong-password') {
+      //           print('Wrong password provided.');
+      //         }
+      //       }
+      //        SharedPreferences prefs=await SharedPreferences.getInstance();
+      //        prefs.setString('name', Constant.username);
+      //        prefs.setString('email', _email.text);
+      //        Constant.email=prefs.getString('email')!;
+      //        Constant.username=prefs.getString('name')!;
+      //        Fluttertoast.showToast(
+      //         msg: "Signed In successfully!",
+      //         backgroundColor: Colors.green,
+      //         textColor: Colors.white,
+      //         fontSize: 10
+      //       ); 
+      // //       authMethods.signInWithEmailAndPassword(_email.text, _pass.text)
+      // //        .then((val) async {
+      // // Navigator.pushReplacement(
+      // //     context,
+      // //     MaterialPageRoute(
+      // //         builder: (context) => Chatroom(text:Constant.username,email: _email.text)));
+
     },
           child: const Text(
             "Login",
