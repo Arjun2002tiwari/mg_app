@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors, non_constant_identifier_names, use_build_context_synchronously
 
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -31,6 +32,7 @@ class _SignupState extends State<Signup> {
   var _name = null;
   var _emailId = null;
   var _pass = null;
+  var _vaid_email=false;
   bool isLoading = false;
   @override
   Widget build(BuildContext context) {
@@ -72,6 +74,7 @@ class _SignupState extends State<Signup> {
         prefixIcon: const Icon(Icons.account_circle),
         contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
         hintText: "First Name",
+        errorText: _name == null ? null : _name,
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
       )),
                 SizedBox(
@@ -86,6 +89,7 @@ class _SignupState extends State<Signup> {
           prefixIcon: const Icon(Icons.mail),
           contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
           hintText: "Email",
+           errorText: _emailId == null ? null : _emailId,
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(10),),
         )),
                 SizedBox(
@@ -101,6 +105,7 @@ class _SignupState extends State<Signup> {
           prefixIcon: const Icon(Icons.vpn_key),
           contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
           hintText: "password",
+          errorText: _pass == null ? null : _pass,
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)))),
                 SizedBox(
                   height: 20,
@@ -113,23 +118,67 @@ class _SignupState extends State<Signup> {
         padding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
         minWidth: MediaQuery.of(context).size.width,
         onPressed: ()  {
+                    _vaid_email=EmailValidator.validate(_email.text);
+                    print(_vaid_email);
                     if (_username.text == '' ||
                         _email.text == '' ||
                         _password.text == '') {
                       if (_username.text == '') {
+                        Fluttertoast.showToast(
+                          msg: "Please enter valid username!",
+                          backgroundColor: Colors.red,
+                          textColor: Colors.white,
+                          fontSize: 20
+                        );
                         setState(() {
                           _name = 'name is required';
                         });
                       } else if (_email.text == '') {
+                        Fluttertoast.showToast(
+                          msg: "email required!",
+                          backgroundColor: Colors.red,
+                          textColor: Colors.white,
+                          fontSize: 20
+                        );
                         setState(() {
+                          _name=null;
                           _emailId = 'email is required';
                         });
                       } else if (_password.text == '') {
+                        Fluttertoast.showToast(
+                          msg: "Please enter valid password!",
+                          backgroundColor: Colors.red,
+                          textColor: Colors.white,
+                          fontSize: 20
+                        );
                         setState(() {
+                          _emailId=null;
                           _pass = 'password is required';
                         });
                       }
-                    } else {
+                    } 
+                    else if(_vaid_email==false){
+                       Fluttertoast.showToast(
+                          msg: "Please enter valid email!",
+                          backgroundColor: Colors.red,
+                          textColor: Colors.white,
+                          fontSize: 20
+                        );
+                        setState(() {
+                          _emailId = 'email is required';
+                        });
+                      }
+                      else if(_password.text.length<6){
+                         Fluttertoast.showToast(
+                          msg: "Please enter valid password!",
+                          backgroundColor: Colors.red,
+                          textColor: Colors.white,
+                          fontSize: 20
+                        );
+                        setState(() {
+                          _pass = 'password is required';
+                        });
+                      }else {
                       setState(() {
                         _name = null;
                         _emailId = null;

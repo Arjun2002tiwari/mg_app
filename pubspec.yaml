@@ -38,6 +38,7 @@ dependencies:
   flutter_native_splash: ^2.2.15
   google_fonts: ^3.0.1
   flutter_phone_direct_caller: ^2.1.1
+  email_validator: ^2.1.17
   
   
 
